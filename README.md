@@ -4,7 +4,7 @@
 # CHAT
 
 ## Demo Version
-[project demo](frontend-project-12-production-amiaxe.up.railway.app)
+[project DEMO]([frontend-project-12-production-amiaxe.up.railway.app](https://frontend-project-12-production-amiaxe.up.railway.app/login))
 
 ## About the project
 A simplified version of Slack chat. Works in web browser.
