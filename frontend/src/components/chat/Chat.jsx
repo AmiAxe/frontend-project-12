@@ -1,22 +1,13 @@
-import {
-  Container,
-  Row,
-  Col,
-  Spinner,
-} from 'react-bootstrap';
-import { toast } from 'react-toastify';
+import { Container, Row, Col } from 'react-bootstrap';
+import { toast, ToastContainer } from 'react-toastify';
 import axios from 'axios';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useRollbar } from '@rollbar/react';
 import { useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import routes from '../../routes';
-import {
-  setChannels,
-} from '../../slices/channelsSlice';
-import {
-  setMessages,
-} from '../../slices/messagesSlice';
+import { setChannels } from '../../slices/channelsSlice';
+import { setMessages } from '../../slices/messagesSlice';
 import Modal from '../popups/Modal';
 import Channels from './Channels';
 import Messages from './Messages';
@@ -25,13 +16,9 @@ import useAuth from '../../hooks/useAuth';
 
 const Chat = () => {
   const rollbar = useRollbar();
-
   const dispatch = useDispatch();
-
   const { logOut, getAuthHeader } = useAuth();
-
   const { t } = useTranslation();
-
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -42,6 +29,7 @@ const Chat = () => {
         });
         dispatch(setChannels(data.channels));
         dispatch(setMessages(data.messages));
+        setIsLoading(false);
       } catch (err) {
         rollbar.error('fetchDataError');
         if (!err.isAxiosError) {
@@ -70,11 +58,12 @@ const Chat = () => {
         </Col>
       </Row>
       <Modal />
-      {isLoading && (
+      <ToastContainer /> {/* добавляем ToastContainer */}
+      {isLoading && ( // проверяем значение isLoading и показываем spinner, если isLoading равен true
         <div className="d-flex justify-content-center align-items-center h-100">
-          <Spinner animation="border" role="status">
+          <div className="spinner-border text-primary" role="status">
             <span className="sr-only">Loading...</span>
-          </Spinner>
+          </div>
         </div>
       )}
     </Container>
