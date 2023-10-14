@@ -59,7 +59,7 @@ const Chat = () => {
 
   return (
     <Container className="h-100 my-4 overflow-hidden rounded shadow">
-      {isLoading ? (
+      {loading ? (
         <div className="d-flex justify-content-center align-items-center">
           <Spinner animation="border" variant="primary" />
         </div>
