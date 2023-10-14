@@ -2,6 +2,7 @@ import {
   Container,
   Row,
   Col,
+  Spinner,
 } from 'react-bootstrap';
 import { toast } from 'react-toastify';
 import axios from 'axios';
@@ -30,6 +31,8 @@ const Chat = () => {
   const { logOut, getAuthHeader } = useAuth();
 
   const { t } = useTranslation();
+
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchContent = async () => {
@@ -67,6 +70,13 @@ const Chat = () => {
         </Col>
       </Row>
       <Modal />
+      {isLoading && (
+        <div className="d-flex justify-content-center align-items-center h-100">
+          <Spinner animation="border" role="status">
+            <span className="sr-only">Loading...</span>
+          </Spinner>
+        </div>
+      )}
     </Container>
   );
 };
