@@ -32,7 +32,7 @@ const Chat = () => {
 
   const { t } = useTranslation();
 
-  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchContent = async () => {
@@ -42,7 +42,7 @@ const Chat = () => {
         });
         dispatch(setChannels(data.channels));
         dispatch(setMessages(data.messages));
-        setData(data);
+        setLoading(false);
       } catch (err) {
         rollbar.error('fetchDataError');
         if (!err.isAxiosError) {
@@ -66,6 +66,11 @@ const Chat = () => {
   }
 
   return (
+    {isLoading ? (
+      <div className="d-flex justify-content-center align-items-center">
+        <Spinner animation="border" variant="primary" />
+      </div>
+    ) : (
     <Container className="h-100 my-4 overflow-hidden rounded shadow">
       <Row className="h-100 bg-white flex-md-row">
         <Channels />
