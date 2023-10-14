@@ -57,32 +57,25 @@ const Chat = () => {
     fetchContent();
   }, [dispatch, rollbar, t]);
 
-  if (!data) {
-    return (
-      <div className="d-flex justify-content-center align-items-center">
-        <Spinner animation="border" variant="primary" />
-      </div>
-    );
-  }
-
   return (
-    {isLoading ? (
-      <div className="d-flex justify-content-center align-items-center">
-        <Spinner animation="border" variant="primary" />
-      </div>
-    ) : (
     <Container className="h-100 my-4 overflow-hidden rounded shadow">
-      <Row className="h-100 bg-white flex-md-row">
-        <Channels />
-        <Col className="p-0 h-100">
-          <div className="d-flex flex-column h-100">
-            <Messages />
-            <div className="mt-auto px-5 py-3">
-              <MessageForm />
+      {isLoading ? (
+        <div className="d-flex justify-content-center align-items-center">
+          <Spinner animation="border" variant="primary" />
+        </div>
+      ) : (
+        <Row className="h-100 bg-white flex-md-row">
+          <Channels />
+          <Col className="p-0 h-100">
+            <div className="d-flex flex-column h-100">
+              <Messages />
+              <div className="mt-auto px-5 py-3">
+                <MessageForm />
+              </div>
             </div>
-          </div>
-        </Col>
-      </Row>
+          </Col>
+        </Row>
+      )}
       <Modal />
     </Container>
   );
