@@ -67,7 +67,6 @@ const Chat = () => {
         </Col>
       </Row>
       <Modal />
-      )}
     </Container>
   );
 };
