@@ -2,10 +2,11 @@ import {
   Container,
   Row,
   Col,
+  Spinner,
 } from 'react-bootstrap';
 import { toast } from 'react-toastify';
 import axios from 'axios';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useRollbar } from '@rollbar/react';
 import { useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
@@ -31,6 +32,8 @@ const Chat = () => {
 
   const { t } = useTranslation();
 
+  const [data, setData] = useState(null);
+
   useEffect(() => {
     const fetchContent = async () => {
       try {
@@ -39,6 +42,7 @@ const Chat = () => {
         });
         dispatch(setChannels(data.channels));
         dispatch(setMessages(data.messages));
+        setData(data);
       } catch (err) {
         rollbar.error('fetchDataError');
         if (!err.isAxiosError) {
@@ -52,6 +56,14 @@ const Chat = () => {
     };
     fetchContent();
   }, [dispatch, rollbar, t]);
+
+  if (!data) {
+    return (
+      <div className="d-flex justify-content-center align-items-center">
+        <Spinner animation="border" variant="primary" />
+      </div>
+    );
+  }
 
   return (
     <Container className="h-100 my-4 overflow-hidden rounded shadow">
