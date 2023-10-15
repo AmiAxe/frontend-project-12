@@ -59,7 +59,7 @@ const Add = () => {
 
   useEffect(() => {
     inputEl.current.focus();
-  }, []);
+  }, [channels]);
 
   return (
     <Modal centered show>
