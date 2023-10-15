@@ -20,14 +20,16 @@ const MessageForm = () => {
   const { t } = useTranslation();
 
   const formik = useFormik({
-    initialValues: { body: '' },
-    onSubmit: async ({ body }) => {
-      const filtered = leoProfanity.clean(body);
-      const newMessage = {
-        body: filtered,
-        channelId: currentId,
-        username,
-      };
+    initialValues: { text: '' },
+    onSubmit: async ({ text }) => {
+      if (text) {
+        const filtered = leoProfanity.clean(text);
+        const newMessage = {
+          body: filtered,
+          channelId: currentId,
+          username,
+        };
+      }
       try {
         await api.newMessage(newMessage);
         formik.resetForm();
