@@ -20,6 +20,8 @@ const MessageForm = () => {
 
   const { t } = useTranslation();
 
+  const inputEl = useRef(null);
+
   const formik = useFormik({
     initialValues: {
       text: '',
@@ -44,11 +46,10 @@ const MessageForm = () => {
       }
     },
   });
-
-  const inputEl = useRef(null);
+  
   useEffect(() => {
     inputEl.current.focus();
-  }, []);
+  }, [currentId, formik.isSubmitting]);
 
   return (
     <Form
