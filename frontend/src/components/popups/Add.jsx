@@ -60,6 +60,10 @@ const Add = () => {
     },
   });
 
+  useEffect(() => {
+    inputRef.current.focus();
+  }, []);
+
   return (
     <Modal centered show>
       <Modal.Header closeButton onClick={() => dispatch(hideModal())}>
