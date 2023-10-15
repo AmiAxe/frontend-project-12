@@ -13,7 +13,7 @@ import 'react-toastify/dist/ReactToastify.css';
 const MessageForm = () => {
   const rollbar = useRollbar();
   const currentId = useSelector((state) => state.channelsReducer.currentChannelId);
-  const { userData } = useAuth();
+  const { user: { username } } = useAuth();
 
   const api = useApi();
 
@@ -25,9 +25,9 @@ const MessageForm = () => {
     },
     onSubmit: async () => {
       const newMessage = {
-        body: filter.clean(formik.values.text),
+        body: JSON.stringify(filter.clean(formik.values.text)),
         channelId: currentId,
-        username: userData.username,
+        username,
       };
       try {
         await api.newMessage(newMessage);
