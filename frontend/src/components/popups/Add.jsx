@@ -46,6 +46,7 @@ const Add = () => {
           await api.newChannel(newChannel);
           dispatch(hideModal());
           toast.success(t('modals.add.toastText'));
+          inputEl.current.focus();
         } catch (err) {
           rollbar.error('addChannelError');
           if (!err.isAxiosError) {
@@ -59,7 +60,7 @@ const Add = () => {
 
   useEffect(() => {
     inputEl.current.focus();
-  }, [channels]);
+  }, []);
 
   return (
     <Modal centered show>
