@@ -9,7 +9,7 @@ import React, { useEffect, useRef } from 'react';
 import { useFormik } from 'formik';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
-import filter from 'leo-profanity';
+import leoProfanity from 'leo-profanity';
 import useApi from '../../hooks/useApi';
 
 const MessageForm = () => {
@@ -26,7 +26,7 @@ const MessageForm = () => {
     },
     onSubmit: async () => {
       const newMessage = {
-        body: filter.clean(formik.values.text),
+        body: leoProfanity.clean(formik.values.text),
         channelId: currentId,
         username: 'admin',
       };
@@ -66,8 +66,6 @@ const MessageForm = () => {
           className="border-0 p-0 ps-2 form-control"
           value={formik.values.text}
           onChange={formik.handleChange}
-          autoFocus
-          aria-describedby="submitButton"
         />
         <Button
           type="submit"
