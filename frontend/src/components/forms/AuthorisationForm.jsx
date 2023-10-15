@@ -58,7 +58,7 @@ const AuthorisationForm = () => {
                 <Image
                   src={`${process.env.PUBLIC_URL}/avatarreg.jpg`}
                   className="rounded-circle"
-                  alt="Регистрация"
+                  alt={t('Регистрация')}
                 />
               </Container>
               <Form
