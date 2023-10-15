@@ -19,9 +19,6 @@ const Add = () => {
   const dispatch = useDispatch();
   const api = useApi();
   const inputEl = useRef(null);
-  useEffect(() => {
-    inputEl.current.focus();
-  }, []);
 
   const { t } = useTranslation();
 
@@ -61,7 +58,7 @@ const Add = () => {
   });
 
   useEffect(() => {
-    inputRef.current.focus();
+    inputEl.current.focus();
   }, []);
 
   return (
