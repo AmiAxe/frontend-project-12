@@ -21,8 +21,10 @@ const MessageForm = () => {
   const { t } = useTranslation();
 
   const formik = useFormik({
-    initialValues: { body: '' },
-    onSubmit: async ({ body }) => {
+    initialValues: { 
+      text: '', 
+    },
+    onSubmit: async () => {
       const filtered = leoProfanity.clean(formik.values.text);
       const newMessage = {
         body: filtered,
