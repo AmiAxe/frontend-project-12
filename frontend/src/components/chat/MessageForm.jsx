@@ -1,16 +1,13 @@
-import {
-  Image,
-  Form,
-  Button,
-} from 'react-bootstrap';
+import React, { useEffect, useRef } from 'react';
+import { Button, Form, Image } from 'react-bootstrap';
 import { toast } from 'react-toastify';
 import { useRollbar } from '@rollbar/react';
-import React, { useEffect, useRef } from 'react';
 import { useFormik } from 'formik';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import filter from 'leo-profanity';
 import useApi from '../../hooks/useApi';
+import 'react-toastify/dist/ReactToastify.css';
 
 const MessageForm = () => {
   const rollbar = useRollbar();
@@ -21,8 +18,8 @@ const MessageForm = () => {
   const { t } = useTranslation();
 
   const formik = useFormik({
-    initialValues: { 
-      text: '', 
+    initialValues: {
+      text: '',
     },
     onSubmit: async () => {
       const newMessage = {
@@ -52,7 +49,7 @@ const MessageForm = () => {
 
   return (
     <Form
-      noValidate=""
+      noValidate
       onSubmit={formik.handleSubmit}
       className="py-1 border rounded-2"
     >
@@ -70,7 +67,6 @@ const MessageForm = () => {
         <Button
           type="submit"
           variant="light"
-          disabled=""
           className="btn btn-group-vertical"
         >
           <Image src={`${process.env.PUBLIC_URL}/send.svg`} />
