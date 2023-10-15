@@ -20,6 +20,10 @@ const Add = () => {
   const api = useApi();
   const inputEl = useRef(null);
 
+  useEffect(() => {
+    inputEl.current.focus();
+  }, []);
+
   const { t } = useTranslation();
 
   const addingSchema = Yup.object().shape({
@@ -57,10 +61,6 @@ const Add = () => {
       }
     },
   });
-
-  useEffect(() => {
-    inputEl.current.focus();
-  }, []);
 
   return (
     <Modal centered show>
