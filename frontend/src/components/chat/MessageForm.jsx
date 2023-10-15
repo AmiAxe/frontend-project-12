@@ -9,7 +9,7 @@ import React, { useEffect, useRef } from 'react';
 import { useFormik } from 'formik';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
-import leoProfanity from 'leo-profanity';
+import filter from 'leo-profanity';
 import useApi from '../../hooks/useApi';
 
 const MessageForm = () => {
@@ -25,9 +25,8 @@ const MessageForm = () => {
       text: '', 
     },
     onSubmit: async () => {
-      const filtered = leoProfanity.clean(formik.values.text);
       const newMessage = {
-        body: filtered,
+        body: JSON.stringify(filter.clean(formik.values.text)),
         channelId: currentId,
         username: 'admin',
       };
