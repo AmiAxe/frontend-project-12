@@ -26,7 +26,7 @@ const MessageForm = () => {
     },
     onSubmit: async () => {
       const newMessage = {
-        body: filter.clean(formik.values.text),
+        body: JSON.stringify(filter.clean(formik.values.text)),
         channelId: currentId,
         username: 'admin',
       };
