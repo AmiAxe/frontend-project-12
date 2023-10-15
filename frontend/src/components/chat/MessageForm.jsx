@@ -49,7 +49,7 @@ const MessageForm = () => {
   
   useEffect(() => {
     inputEl.current.focus();
-  }, [currentId, formik]);
+  }, [formik]);
 
   return (
     <Form
