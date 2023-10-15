@@ -36,7 +36,7 @@ const AuthorisationForm = () => {
         auth.logIn(res.data);
         navigate('/');
       } catch (err) {
-        rollbar.error('registationError');
+        rollbar.error(t('registationError'));
         if (!err.isAxiosError) {
           toast.error(t('errors.unknownError'));
           return;
