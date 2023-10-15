@@ -5,7 +5,7 @@ import { useRollbar } from '@rollbar/react';
 import { useFormik } from 'formik';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
-import leoProfanity from 'leo-profanity';
+import filter from 'leo-profanity';
 import useApi from '../../hooks/useApi.jsx';
 import useAuth from '../../hooks/useAuth.jsx';
 import 'react-toastify/dist/ReactToastify.css';
@@ -20,16 +20,15 @@ const MessageForm = () => {
   const { t } = useTranslation();
 
   const formik = useFormik({
-    initialValues: { text: '' },
-    onSubmit: async ({ text }) => {
-      if (text) {
-        const filtered = leoProfanity.clean(formik.values.text);
-        const newMessage = {
-          body: filtered,
-          channelId: currentId,
-          username,
-        };
-      }
+    initialValues: {
+      text: '',
+    },
+    onSubmit: async () => {
+      const newMessage = {
+        body: api.filter.clean(formik.values.text),
+        channelId: currentId,
+        username,
+      };
       try {
         await api.newMessage(newMessage);
         formik.resetForm();
