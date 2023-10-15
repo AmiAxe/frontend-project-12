@@ -23,7 +23,7 @@ const MessageForm = () => {
     initialValues: { text: '' },
     onSubmit: async ({ text }) => {
       if (text) {
-        const filtered = leoProfanity.clean(text);
+        const filtered = leoProfanity.clean(formik.values.text);
         const newMessage = {
           body: filtered,
           channelId: currentId,
