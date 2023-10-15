@@ -25,7 +25,7 @@ const MessageForm = () => {
       const newMessage = {
         body: JSON.stringify(filter.clean(formik.values.text)),
         channelId: currentId,
-        username: 'admin',
+        username: userData.username,
       };
       try {
         await api.newMessage(newMessage);
