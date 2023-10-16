@@ -1,4 +1,4 @@
-import { createContext, useState } from 'react';
+import { createContext, useState, useMemo } from 'react';
 
 const AuthContext = createContext({});
 
@@ -19,11 +19,12 @@ const AuthProvider = ({ children }) => {
     return {};
   };
 
-  return (
-    <AuthContext.Provider value={{
+  const memoValue = useMemo(() => ({
       logIn, logOut, user, getAuthHeader,
-    }}
-    >
+     });
+
+  return (
+    <AuthContext.Provider value={memoValue}}>
       {children}
     </AuthContext.Provider>
   );
