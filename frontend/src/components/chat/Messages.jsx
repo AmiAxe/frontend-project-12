@@ -12,6 +12,7 @@ const Messages = () => {
     .filter(({ channelId }) => channelId === currentId);
 
   const channels = useSelector(channelsSelector.selectAll);
+  const { user } = useAuth();
 
   const { t } = useTranslation();
 
