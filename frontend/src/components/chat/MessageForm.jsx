@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useContext } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Button, Form, Image } from 'react-bootstrap';
 import { toast } from 'react-toastify';
 import { useRollbar } from '@rollbar/react';
@@ -8,7 +8,7 @@ import { useTranslation } from 'react-i18next';
 import filter from 'leo-profanity';
 import useApi from '../../hooks/useApi.jsx';
 import useAuth from '../../hooks/useAuth.jsx';
-import AuthContext from '../../contexts/authContext';
+// import AuthContext from '../../contexts/authContext';
 import 'react-toastify/dist/ReactToastify.css';
 
 const MessageForm = () => {
