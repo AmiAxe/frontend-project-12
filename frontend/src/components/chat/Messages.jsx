@@ -10,11 +10,6 @@ const Messages = () => {
     .filter(({ channelId }) => channelId === currentId);
   const channels = useSelector(channelsSelector.selectAll);
   const { t } = useTranslation();
-  const messagesEnd = useRef(null);
-
-  useEffect(() => {
-    messagesEnd.current?.scrollIntoView();
-  }, [messages]);
   
   const getCurrentChannel = () => {
     const currentChannel = channels.find(({ id }) => id === currentId);
