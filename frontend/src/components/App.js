@@ -12,33 +12,6 @@ import Page404 from './Page404';
 import { AuthContext } from '../contexts/index';
 import routes from '../routes';
 
-const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(() => JSON.parse(localStorage.getItem('user')));
-  const logIn = (resData) => {
-    localStorage.setItem('user', JSON.stringify(resData));
-    setUser(resData);
-  };
-  const logOut = () => {
-    localStorage.removeItem('user');
-    setUser(null);
-  };
-  const getAuthHeader = () => {
-    if (user && user.token) {
-      return { Authorization: `Bearer ${user.token}` };
-    }
-    return {};
-  };
-
-  return (
-    <AuthContext.Provider value={{
-      logIn, logOut, user, getAuthHeader,
-    }}
-    >
-      {children}
-    </AuthContext.Provider>
-  );
-};
-
 const App = () => (
   <AuthProvider>
     <BrowserRouter>
