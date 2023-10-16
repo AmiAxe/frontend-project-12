@@ -27,10 +27,10 @@ const Messages = () => {
   const renderMessages = () => {
     if (!user) {
       return null;
-    } return messages.map(({ body, id }) => (
+    } return messages.map(({ body, id, username }) => (
       <div key={id} className="text-break mb-2">
         <b>
-          {user.username}
+          {username}
           :
         </b>
         {` ${filter.clean(JSON.parse(body))}`}
