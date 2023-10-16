@@ -8,7 +8,7 @@ import { useTranslation } from 'react-i18next';
 import filter from 'leo-profanity';
 import useApi from '../../hooks/useApi.jsx';
 // import useAuth from '../../hooks/useAuth.jsx';
-import AuthContext from '../../contexts/authContext';
+import { AuthContext } from '../../contexts/authContext';
 import 'react-toastify/dist/ReactToastify.css';
 
 const MessageForm = () => {
