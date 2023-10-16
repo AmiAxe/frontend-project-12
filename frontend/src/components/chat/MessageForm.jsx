@@ -16,7 +16,7 @@ const MessageForm = () => {
   const currentId = useSelector((state) => state.channelsReducer.currentChannelId);
   const { user: { username } } = useAuth();
   // const { currentUser } = useContext(AuthContext);
-  api = useApi();
+  const api = useApi();
 
   const { t } = useTranslation();
 
