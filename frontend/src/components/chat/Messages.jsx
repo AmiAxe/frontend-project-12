@@ -1,5 +1,4 @@
 import React from 'react';
-import filter from 'leo-profanity';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { messagesSelector } from '../../slices/messagesSlice';
