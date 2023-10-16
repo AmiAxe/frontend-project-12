@@ -16,7 +16,7 @@ const MessageForm = () => {
   const currentId = useSelector((state) => state.channelsReducer.currentChannelId);
   const { user: { username } } = useAuth();
   // const { currentUser } = useContext(AuthContext);
-  // const api = useApi();
+  api = useApi();
 
   const { t } = useTranslation();
 
@@ -26,7 +26,7 @@ const MessageForm = () => {
     },
     onSubmit: async () => {
       const newMessage = {
-        body: filter.clean(formik.values.text),
+        body: JSON.stringify(filter.clean(formik.values.text)),
         channelId: currentId,
         username,
       };
