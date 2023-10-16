@@ -4,7 +4,8 @@ import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { messagesSelector } from '../../slices/messagesSlice';
 import { channelsSelector } from '../../slices/channelsSlice';
-import useAuth from '../../hooks/useAuth';
+//import useAuth from '../../hooks/useAuth';
+import AuthContext from '../../contexts/index';
 
 const Messages = () => {
   const currentId = useSelector((state) => state.channelsReducer.currentChannelId);
@@ -13,7 +14,7 @@ const Messages = () => {
 
   const channels = useSelector(channelsSelector.selectAll);
 
-  const { user } = useAuth();
+  const { user } = useContext(useAuth);
 
   const { t } = useTranslation();
 
