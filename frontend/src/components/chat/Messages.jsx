@@ -12,7 +12,6 @@ const Messages = () => {
     .filter(({ channelId }) => channelId === currentId);
 
   const channels = useSelector(channelsSelector.selectAll);
-  const { user } = useAuth();
 
   const { t } = useTranslation();
 
@@ -33,7 +32,7 @@ const Messages = () => {
           {username}
           :
         </b>
-        {` ${filter.clean(JSON.parse(body))}`}
+        {body}
       </div>
     ));
   };
