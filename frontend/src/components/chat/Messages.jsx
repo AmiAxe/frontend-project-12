@@ -38,7 +38,7 @@ const Messages = () => {
 
   useEffect(() => {
     messagesEnd.current?.scrollIntoView();
-  }, [messages]);
+  }, [channels]);
 
   return (
     <>
