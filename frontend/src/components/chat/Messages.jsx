@@ -36,7 +36,7 @@ const Messages = () => {
 
   useEffect(() => {
     messagesEnd.current?.scrollIntoView();
-  }, [messages]);
+  }, [channelId]);
 
   return (
     <div className="chat-messages-container">
