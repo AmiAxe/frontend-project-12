@@ -10,7 +10,7 @@ const Messages = () => {
     .filter(({ channelId }) => channelId === currentId);
   const channels = useSelector(channelsSelector.selectAll);
   const { t } = useTranslation();
-  
+
   const getCurrentChannel = () => {
     const currentChannel = channels.find(({ id }) => id === currentId);
     if (currentChannel) {
