@@ -20,8 +20,10 @@ const AuthProvider = ({ children }) => {
   };
 
   const memoValue = useMemo(() => ({
-      logIn, logOut, user, getAuthHeader,
-     });
+    logIn, logOut, user, getAuthHeader,
+    }), 
+    [logIn, logOut, user, getAuthHeader],
+  );
 
   return (
     <AuthContext.Provider value={memoValue}}>
