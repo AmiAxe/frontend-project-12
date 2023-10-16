@@ -36,7 +36,7 @@ const Messages = () => {
 
   useEffect(() => {
     messagesEnd.current?.scrollIntoView();
-  }, [messages]);
+  }, []);
 
   return (
     <>
@@ -53,8 +53,8 @@ const Messages = () => {
         className="chat-messages overflow-auto px-5 "
       >
         {renderMessages()}
+        <div ref={messagesEnd} />
       </div>
-      <div ref={messagesEnd} />
     </>
   );
 };
