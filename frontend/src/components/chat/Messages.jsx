@@ -14,7 +14,7 @@ const Messages = () => {
 
   const channels = useSelector(channelsSelector.selectAll);
 
-  const { user } = useContext(AuthContext);
+  const { user } = AuthContext();
 
   const { t } = useTranslation();
 
