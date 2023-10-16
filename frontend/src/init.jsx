@@ -1,10 +1,9 @@
 import { Provider as RollbarProvider, ErrorBoundary } from '@rollbar/react';
 import i18next from 'i18next';
 import { initReactI18next, I18nextProvider } from 'react-i18next';
-import { io } from 'socket.io-client';
 import { Provider } from 'react-redux';
 import filter from 'leo-profanity';
-import { ApiContext } from './contexts/index';
+import { ApiContext, socket } from './contexts/apiContext';
 import App from './components/App';
 import store from './slices/index';
 import resources from './locales/index';
@@ -19,7 +18,6 @@ const init = async () => {
     environment: 'production',
   };
 
-  const socket = io();
   socket.on('newMessage', (payload) => store.dispatch(addMessage(payload)));
   socket.on('newChannel', (payload) => {
     store.dispatch(addChannel(payload));
