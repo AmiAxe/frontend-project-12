@@ -20,27 +20,19 @@ const Messages = () => {
     return t('defaultChannel');
   };
 
-const renderMessages = () => {
-  if (!currentId) {
-    return null;
-  } 
-  return (
-    <div>
-      {messages.map(({ body, id, username }) => (
-        <React.Fragment key={id}>
-          <div className="text-break mb-2">
-            <b>
-              {username}
-              :
-            </b>
-            {body}
-          </div>
-        </React.Fragment>
-      ))}
-      <React.Fragment ref={messagesEnd} />
-    </div>
-  );
-}
+  const renderMessages = () => {
+    if (!currentId) {
+      return null;
+    } return messages.map(({ body, id, username }) => (
+      <div key={id} className="text-break mb-2">
+        <b>
+          {username}
+          :
+        </b>
+        {body}
+      </div>
+    ));
+  };
 
   useEffect(() => {
     messagesEnd.current?.scrollIntoView();
@@ -62,6 +54,7 @@ const renderMessages = () => {
       >
         {renderMessages()}
       </div>
+      <div ref={messagesEnd} />
     </>
   );
 };
