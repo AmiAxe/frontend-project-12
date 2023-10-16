@@ -8,6 +8,7 @@ const Messages = () => {
   const currentId = useSelector((state) => state.channelsReducer.currentChannelId);
   const messages = useSelector(messagesSelector.selectAll)
     .filter(({ channelId }) => channelId === currentId);
+  const messagesEnd = useRef(null);
 
   const channels = useSelector(channelsSelector.selectAll);
 
@@ -35,6 +36,10 @@ const Messages = () => {
     ));
   };
 
+  useEffect(() => {
+    messagesEnd.current?.scrollIntoView();
+  }, [messages]);
+
   return (
     <>
       <div className="bg-light mb-4 p-3 shadow-sm small">
@@ -50,6 +55,7 @@ const Messages = () => {
         className="chat-messages overflow-auto px-5 "
       >
         {renderMessages()}
+        <div ref={messagesEnd} />
       </div>
     </>
   );
