@@ -30,7 +30,7 @@ const Messages = () => {
           {username}
           :
         </b>
-        {` ${body}`}
+        {body}
       </div>
     ));
   };
