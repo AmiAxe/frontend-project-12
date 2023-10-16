@@ -32,7 +32,7 @@ const Messages = () => {
           {username}
           :
         </b>
-        {`${body}`}
+        {` ${filter.clean(JSON.parse(body))}`}
       </div>
     ));
   };
