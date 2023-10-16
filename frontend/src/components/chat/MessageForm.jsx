@@ -15,7 +15,7 @@ const MessageForm = () => {
   const rollbar = useRollbar();
   const currentId = useSelector((state) => state.channelsReducer.currentChannelId);
   const { user: { username } } = useAuth();
-  const { currentUser } = useContext(AuthContext);
+  // const { currentUser } = useContext(AuthContext);
   // const api = useApi();
 
   const { t } = useTranslation();
