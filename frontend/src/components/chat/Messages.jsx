@@ -8,12 +8,14 @@ const Messages = () => {
   const currentId = useSelector((state) => state.channelsReducer.currentChannelId);
   const messages = useSelector(messagesSelector.selectAll)
     .filter(({ channelId }) => channelId === currentId);
+  const channels = useSelector(channelsSelector.selectAll);
+  const { t } = useTranslation();
   const messagesEnd = useRef(null);
 
-  const channels = useSelector(channelsSelector.selectAll);
-
-  const { t } = useTranslation();
-
+  useEffect(() => {
+    messagesEnd.current?.scrollIntoView();
+  }, [messages]);
+  
   const getCurrentChannel = () => {
     const currentChannel = channels.find(({ id }) => id === currentId);
     if (currentChannel) {
@@ -35,10 +37,6 @@ const Messages = () => {
       </div>
     ));
   };
-
-  useEffect(() => {
-    messagesEnd.current?.scrollIntoView();
-  }, [messages]);
 
   return (
     <>
