@@ -1,5 +1,4 @@
 /* eslint-disable react/jsx-no-constructed-context-values */
-import { useState } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -9,7 +8,7 @@ import Chat from './chat/Chat';
 import PrivateRoute from './PrivateRoute';
 import Navigation from './Navigation';
 import Page404 from './Page404';
-import { AuthContext } from '../contexts/index';
+import { AuthProvider } from '../contexts/authContext';
 import routes from '../routes';
 
 const App = () => (
