@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useContext } from 'react';
 import { Button, Form, Image } from 'react-bootstrap';
 import { toast } from 'react-toastify';
 import { useRollbar } from '@rollbar/react';
@@ -8,14 +8,15 @@ import { useTranslation } from 'react-i18next';
 import filter from 'leo-profanity';
 import useApi from '../../hooks/useApi.jsx';
 import useAuth from '../../hooks/useAuth.jsx';
+import AuthContext from '../../contexts/authContext';
 import 'react-toastify/dist/ReactToastify.css';
 
 const MessageForm = () => {
   const rollbar = useRollbar();
   const currentId = useSelector((state) => state.channelsReducer.currentChannelId);
   const { user: { username } } = useAuth();
-
-  const api = useApi();
+  const { currentUser } = useContext(AuthContext);
+  // const api = useApi();
 
   const { t } = useTranslation();
 
@@ -25,7 +26,7 @@ const MessageForm = () => {
     },
     onSubmit: async () => {
       const newMessage = {
-        body: JSON.stringify(filter.clean(formik.values.text)),
+        body: filter.clean(formik.values.text),
         channelId: currentId,
         username,
       };
