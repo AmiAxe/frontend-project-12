@@ -31,7 +31,7 @@ const Messages = () => {
           {username}
           :
         </b>
-        {` ${filter.clean(JSON.parse(body))}`}
+        {` ${body}`}
       </div>
     ));
   };
