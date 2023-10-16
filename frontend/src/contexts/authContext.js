@@ -19,9 +19,10 @@ const AuthProvider = ({ children }) => {
     return {};
   };
 
-  const memoValue = useMemo(() => ({
-    logIn, logOut, user, getAuthHeader,
-    }), 
+  const memoValue = useMemo(
+    () => ({
+      logIn, logOut, user, getAuthHeader,
+    }),
     [logIn, logOut, user, getAuthHeader],
   );
 
