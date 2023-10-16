@@ -26,7 +26,7 @@ const AuthProvider = ({ children }) => {
   );
 
   return (
-    <AuthContext.Provider value={memoValue}}>
+    <AuthContext.Provider value={memoValue}>
       {children}
     </AuthContext.Provider>
   );
