@@ -13,6 +13,8 @@ const Messages = () => {
 
   const channels = useSelector(channelsSelector.selectAll);
 
+  const { user } = useAuth();
+
   const { t } = useTranslation();
 
   const getCurrentChannel = () => {
