@@ -53,7 +53,6 @@ const Messages = () => {
         className="chat-messages overflow-auto px-5 "
       >
         {renderMessages()}
-        <div ref={messagesEnd} />
       </div>
     </>
   );
