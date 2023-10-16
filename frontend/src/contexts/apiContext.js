@@ -1,5 +1,5 @@
 import { createContext } from 'react';
+import { io } from 'socket.io-client';
 
-const ApiContext = createContext(null);
-
-export default ApiContext;
+export const ApiContext = createContext(null);
+export const socket = io();
