@@ -7,14 +7,14 @@ import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import filter from 'leo-profanity';
 import useApi from '../../hooks/useApi.jsx';
-import { AuthContext } from '../../contexts/authContext';
+// import { AuthContext } from '../../contexts/authContext';
 import 'react-toastify/dist/ReactToastify.css';
 
 const MessageForm = () => {
   const rollbar = useRollbar();
   const currentId = useSelector((state) => state.channelsReducer.currentChannelId);
   const api = useApi();
-  const { currentUser } = useContext(AuthContext);
+  // const { currentUser } = useContext(AuthContext);
 
   const { t } = useTranslation();
 
@@ -26,7 +26,7 @@ const MessageForm = () => {
       const newMessage = {
         body: filter.clean(formik.values.text),
         channelId: currentId,
-        username: currentUser,
+        username,
       };
       try {
         await api.newMessage(newMessage);
