@@ -2,10 +2,11 @@ import {
   Container,
   Row,
   Col,
+  Spinner,
 } from 'react-bootstrap';
 import { toast } from 'react-toastify';
 import axios from 'axios';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useRollbar } from '@rollbar/react';
 import { useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
@@ -31,6 +32,8 @@ const Chat = () => {
 
   const { t } = useTranslation();
 
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     const fetchContent = async () => {
       try {
@@ -39,6 +42,7 @@ const Chat = () => {
         });
         dispatch(setChannels(data.channels));
         dispatch(setMessages(data.messages));
+        setLoading(false);
       } catch (err) {
         rollbar.error('fetchDataError');
         if (!err.isAxiosError) {
@@ -55,17 +59,23 @@ const Chat = () => {
 
   return (
     <Container className="h-100 my-4 overflow-hidden rounded shadow">
-      <Row className="h-100 bg-white flex-md-row">
-        <Channels />
-        <Col className="p-0 h-100">
-          <div className="d-flex flex-column h-100">
-            <Messages />
-            <div className="mt-auto px-5 py-3">
-              <MessageForm />
+      {loading ? (
+        <div className="d-flex justify-content-center align-items-center">
+          <Spinner animation="border" variant="primary" />
+        </div>
+      ) : (
+        <Row className="h-100 bg-white flex-md-row">
+          <Channels />
+          <Col className="p-0 h-100">
+            <div className="d-flex flex-column h-100">
+              <Messages />
+              <div className="mt-auto px-5 py-3">
+                <MessageForm />
+              </div>
             </div>
-          </div>
-        </Col>
-      </Row>
+          </Col>
+        </Row>
+      )}
       <Modal />
     </Container>
   );
