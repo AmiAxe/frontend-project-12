@@ -22,10 +22,10 @@ const Messages = () => {
   const renderMessages = () => {
     if (!currentId) {
       return null;
-    } return messages.map(({ body, id, username }) => (
+    } return messages.map(({ body, id, currentUser }) => (
       <div key={id} className="text-break mb-2">
         <b>
-          {username}
+          {currentUser}
           :
         </b>
         {body}
