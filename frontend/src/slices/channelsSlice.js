@@ -21,8 +21,8 @@ const channelsSlice = createSlice({
       channelsAdapter.removeOne(state, action);
       state.currentChannelId = 1;
     },
-    setCurrentChannelId: (state, { payload }) => {
-      state.currentChannelId = payload;
+    setCurrentChannelId: (state, action) => {
+      state.currentChannelId = action.payload;
     },
   },
 });
