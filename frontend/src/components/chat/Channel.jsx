@@ -19,7 +19,7 @@ const Channel = (props) => {
   const dispatch = useDispatch();
   const currentId = useSelector((state) => state.channelsReducer.currentChannelId);
   const { t } = useTranslation();
-
+  
   if (removable) {
     return (
       <Nav.Item key={id} className="w-100">
