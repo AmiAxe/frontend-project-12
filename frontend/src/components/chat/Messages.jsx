@@ -3,7 +3,6 @@ import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { messagesSelector } from '../../slices/messagesSlice';
 import { channelsSelector } from '../../slices/channelsSlice';
-import { AuthContext } from '../../contexts/authContext';
 
 const Messages = () => {
   const currentId = useSelector((state) => state.channelsReducer.currentChannelId);
@@ -11,7 +10,6 @@ const Messages = () => {
     .filter(({ channelId }) => channelId === currentId);
   const channels = useSelector(channelsSelector.selectAll);
   const { t } = useTranslation();
-  const { currentUser } = useContext(AuthContext);
 
   const getCurrentChannel = () => {
     const currentChannel = channels.find(({ id }) => id === currentId);
@@ -22,7 +20,7 @@ const Messages = () => {
   };
 
   const renderMessages = () => {
-    if (!currentUser) {
+    if (!currentId) {
       return null;
     } return messages.map(({ body, id, currentUser }) => (
       <div key={id} className="text-break mb-2">
