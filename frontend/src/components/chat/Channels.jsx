@@ -1,9 +1,3 @@
-import {
-  Nav,
-  Button,
-  Col,
-  Image,
-} from 'react-bootstrap';
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
@@ -47,5 +41,4 @@ const Channels = () => {
     </Col>
   );
 };
-
 export default Channels;
