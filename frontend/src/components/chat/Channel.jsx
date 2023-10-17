@@ -19,22 +19,14 @@ const Channel = (props) => {
   const dispatch = useDispatch();
   const currentId = useSelector((state) => state.channelsReducer.currentChannelId);
   const { t } = useTranslation();
-
-  const handleChooseChannel = (channelId) => {
-    if (channelId === currentId) {
-      dispatch(setCurrentChannelId(channelId));
-    } else {
-      dispatch(showModal({ type: 'removing', channel }));
-    }
-  };
-
+  
   if (removable) {
     return (
       <Nav.Item key={id} className="w-100">
         <Dropdown className="w-100" as={ButtonGroup}>
           <Button
             variant={currentId === id ? 'secondary' : null}
-            onClick={() => handleChooseChannel(id)}
+            onClick={() => dispatch(setCurrentChannelId(id))}
             className="w-100 rounded-0 text-start text-truncate"
           >
             {`# ${name}`}
@@ -68,7 +60,7 @@ const Channel = (props) => {
         variant={currentId === id ? 'secondary' : null}
         type="button"
         className="w-100 rounded-0 text-start"
-        onClick={() => handleChooseChannel(id)}
+        onClick={() => dispatch(setCurrentChannelId(id))}
       >
         <span className="me-1">#</span>
         {name}
