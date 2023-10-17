@@ -4,11 +4,11 @@ import {
   Col,
   Image,
 } from 'react-bootstrap';
-import React, { useEffect } from 'react';
+import React from 'react';
 // import { animateScroll } from 'react-scroll';
 import { useSelector, useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
-import { channelsSelector, initialState } from '../../slices/channelsSlice';
+import { channelsSelector } from '../../slices/channelsSlice';
 import { showModal } from '../../slices/modalsSlice';
 import Channel from './Channel';
 
@@ -21,12 +21,12 @@ const Channels = () => {
   // const lastChannelsItemId = channels.at(-1).id;
 
   // useEffect(() => {
-    // if (currentChannelId === initialState) {
-      // animateScroll.scrollToTop({ containerId: 'channels-box', delay: 0, duration: 0 });
-    // }
-    // if (currentChannelId === lastChannelsItemId) {
-      // animateScroll.scrollToBottom({ containerId: 'channels-box', delay: 0, duration: 0 });
-    // }
+  //   if (currentChannelId === initialState) {
+  //     animateScroll.scrollToTop({ containerId: 'channels-box', delay: 0, duration: 0 });
+  //   }
+  //   if (currentChannelId === lastChannelsItemId) {
+  //     animateScroll.scrollToBottom({ containerId: 'channels-box', delay: 0, duration: 0 });
+  //   }
   // }, [currentChannelId, lastChannelsItemId]);
 
   if (channels.length === 0) {
