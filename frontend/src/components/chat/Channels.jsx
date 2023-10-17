@@ -7,7 +7,7 @@ import {
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
-import * as channelsSlice from '../../slices/channelsSlice'
+import { channelsSelector } from '../../slices/channelsSlice';
 import { showModal } from '../../slices/modalsSlice';
 import Channel from './Channel';
 
@@ -15,10 +15,6 @@ const Channels = () => {
   const dispatch = useDispatch();
   const channels = useSelector(channelsSelector.selectAll);
   const { t } = useTranslation();
-
-  const handleChooseChannel = (channelId) => () => {
-    dispatch(setCurrentChannelId({ channelId }));
-  };
 
   if (channels.length === 0) {
     return null;
@@ -45,7 +41,6 @@ const Channels = () => {
           <Channel
             key={channel.id}
             channel={channel}
-            handleChoose={handleChooseChannel(channel.id)}
           />
         ))}
       </Nav>
