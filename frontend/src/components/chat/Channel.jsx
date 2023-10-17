@@ -20,8 +20,8 @@ const Channel = (props) => {
   const currentId = useSelector((state) => state.channelsReducer.currentChannelId);
   const { t } = useTranslation();
 
-  const handleChooseChannel = (channelId, creatorId) => {
-    if (creatorId === channelId) {
+  const handleChooseChannel = (channelId) => {
+    if (channelId === currentId) {
       dispatch(setCurrentChannelId(channelId));
     } else {
       dispatch(showModal({ type: 'removing', channel }));
