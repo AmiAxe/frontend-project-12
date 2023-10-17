@@ -15,10 +15,10 @@ import Channel from './Channel';
 const Channels = () => {
   const dispatch = useDispatch();
   const channels = useSelector(channelsSelector.selectAll);
-  
+  const { t } = useTranslation();
+
   // const { channels, currentChannelId } = useSelector((state) => state.channelsInfo);
   // const lastChannelsItemId = channels.at(-1).id;
-  // const { t } = useTranslation();
 
   // useEffect(() => {
     // if (currentChannelId === initialState) {
