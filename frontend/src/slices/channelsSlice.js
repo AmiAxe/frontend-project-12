@@ -14,7 +14,7 @@ const channelsSlice = createSlice({
     addChannel: (state, action) => {
       const { id, name, creatorId } = action.payload;
       channelsAdapter.addOne(state, { id, name, creatorId });
-      if (creatorId === id) {
+      if (state.currentChannelId === id) {
         state.currentChannelId = id;
       }
     },
