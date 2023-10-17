@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-expressions */
+/* eslint-disable no-param-reassign */
 import { createSlice, createEntityAdapter } from '@reduxjs/toolkit';
 
 const channelsAdapter = createEntityAdapter();
@@ -21,8 +23,8 @@ const channelsSlice = createSlice({
       channelsAdapter.removeOne(state, action);
       state.currentChannelId = 1;
     },
-    setCurrentChannelId: (state, action) => {
-      state.currentChannelId = action.payload;
+    setCurrentChannelId: (state, { payload }) => {
+      state.currentChannelId = payload;
     },
   },
 });
