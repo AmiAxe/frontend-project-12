@@ -8,9 +8,7 @@ import {
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
-import {
-  setCurrentChannelId,
-} from '../../slices/channelsSlice';
+import * as channelsSlice from '../../slices/channelsSlice'
 import { showModal } from '../../slices/modalsSlice';
 
 const Channel = (props) => {
@@ -20,14 +18,18 @@ const Channel = (props) => {
   const currentId = useSelector((state) => state.channelsReducer.currentChannelId);
   const { t } = useTranslation();
 
+  const handleChooseChannel = (channelId) => () => {
+    dispatch(setCurrentChannelId({ channelId }));
+  };
+
   if (removable) {
     return (
       <Nav.Item key={id} className="w-100">
         <Dropdown className="w-100" as={ButtonGroup}>
           <Button
             variant={currentId === id ? 'secondary' : null}
-            onClick={() => dispatch(setCurrentChannelId(id))}
             className="w-100 rounded-0 text-start text-truncate"
+            onClick={handleChooseChannel(id)}
           >
             {`# ${name}`}
           </Button>
@@ -60,7 +62,7 @@ const Channel = (props) => {
         variant={currentId === id ? 'secondary' : null}
         type="button"
         className="w-100 rounded-0 text-start"
-        onClick={() => dispatch(setCurrentChannelId(id))}
+        onClick={handleChooseChannel(id)}
       >
         <span className="me-1">#</span>
         {name}
