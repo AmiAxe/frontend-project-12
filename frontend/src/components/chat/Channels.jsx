@@ -5,7 +5,7 @@ import {
   Image,
 } from 'react-bootstrap';
 import React, { useEffect } from 'react';
-import { animateScroll } from 'react-scroll';
+// import { animateScroll } from 'react-scroll';
 import { useSelector, useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { channelsSelector, initialState } from '../../slices/channelsSlice';
@@ -14,19 +14,20 @@ import Channel from './Channel';
 
 const Channels = () => {
   const dispatch = useDispatch();
-  // const channels = useSelector(channelsSelector.selectAll);
-  const { channels, currentChannelId } = useSelector((state) => state.channelsInfo);
-  const lastChannelsItemId = channels.at(-1).id;
-  const { t } = useTranslation();
+  const channels = useSelector(channelsSelector.selectAll);
+  
+  // const { channels, currentChannelId } = useSelector((state) => state.channelsInfo);
+  // const lastChannelsItemId = channels.at(-1).id;
+  // const { t } = useTranslation();
 
-  useEffect(() => {
-    if (currentChannelId === initialState) {
-      animateScroll.scrollToTop({ containerId: 'channels-box', delay: 0, duration: 0 });
-    }
-    if (currentChannelId === lastChannelsItemId) {
-      animateScroll.scrollToBottom({ containerId: 'channels-box', delay: 0, duration: 0 });
-    }
-  }, [currentChannelId, lastChannelsItemId]);
+  // useEffect(() => {
+    // if (currentChannelId === initialState) {
+      // animateScroll.scrollToTop({ containerId: 'channels-box', delay: 0, duration: 0 });
+    // }
+    // if (currentChannelId === lastChannelsItemId) {
+      // animateScroll.scrollToBottom({ containerId: 'channels-box', delay: 0, duration: 0 });
+    // }
+  // }, [currentChannelId, lastChannelsItemId]);
 
   if (channels.length === 0) {
     return null;
