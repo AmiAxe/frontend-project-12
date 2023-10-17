@@ -26,8 +26,8 @@ const Channel = (props) => {
         <Dropdown className="w-100" as={ButtonGroup}>
           <Button
             variant={currentId === id ? 'secondary' : null}
-            className="w-100 rounded-0 text-start text-truncate"
             onClick={() => dispatch(setCurrentChannelId(id))}
+            className="w-100 rounded-0 text-start text-truncate"
           >
             {`# ${name}`}
           </Button>
