@@ -26,17 +26,22 @@ const Messages = () => {
 
   const renderMessages = () => {
     if (messages.length > 0) {
-      return messages.map(({ body, id, currentUser }) => (
-        <div key={id} className="text-break mb-2">
-          <b>
-            {currentUser}
-            :
-          </b>
-          {body}
-        </div>
-        <div ref={messagesEnd} />
-      ));
-    } return null;
+      return (
+        <>
+          {messages.map(({ body, id, currentUser }) => (
+            <div key={id} className="text-break mb-2">
+              <b>
+                {currentUser}
+                :
+              </b>
+              {body}
+            </div>
+          ))}
+          <div ref={messagesEnd} />
+        </>
+      );
+    }
+    return null;
   };
 
   return (
