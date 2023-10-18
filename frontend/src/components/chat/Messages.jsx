@@ -9,7 +9,7 @@ const Messages = () => {
   const messages = useSelector(messagesSelector.selectAll)
     .filter(({ channelId }) => channelId === currentId)
     .map(({
-      body, id, channelId, username
+      body, id, channelId, username,
     }) => ({
       body,
       id,
