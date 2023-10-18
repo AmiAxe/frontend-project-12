@@ -17,18 +17,6 @@ const Channels = () => {
   const channels = useSelector(channelsSelector.selectAll);
   const { t } = useTranslation();
 
-  // const { channels, currentChannelId } = useSelector((state) => state.channelsInfo);
-  // const lastChannelsItemId = channels.at(-1).id;
-
-  // useEffect(() => {
-  //   if (currentChannelId === initialState) {
-  //     animateScroll.scrollToTop({ containerId: 'channels-box', delay: 0, duration: 0 });
-  //   }
-  //   if (currentChannelId === lastChannelsItemId) {
-  //     animateScroll.scrollToBottom({ containerId: 'channels-box', delay: 0, duration: 0 });
-  //   }
-  // }, [currentChannelId, lastChannelsItemId]);
-
   if (channels.length === 0) {
     return null;
   }
