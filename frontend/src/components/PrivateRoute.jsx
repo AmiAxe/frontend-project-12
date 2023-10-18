@@ -6,7 +6,7 @@ const AuthRoute = ({ children }) => {
   const location = useLocation();
 
   return (
-    auth.user ? children : <Navigate to={routes.loginPage()} state={{ from: location }} />
+    auth.user ? children : <Navigate to="/login" state={{ from: location }} />
   );
 };
 
