@@ -36,7 +36,7 @@ const Messages = () => {
               </b>
               {body}
             </div>
-          ))}
+          )}
           <div ref={messagesEnd} />
         </>
       );
