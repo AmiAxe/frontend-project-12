@@ -24,8 +24,7 @@ const Messages = () => {
     messagesEnd.current?.scrollIntoView();
   }, [messages]);
 
-  const renderMessages = () => {
-  return (messages.length > 0) ? (
+  const renderMessages = () => (messages.length > 0) ? (
     messages.map(({ body, id, currentUser }) => (
       <div key={id} className="text-break mb-2">
         <b>
@@ -36,7 +35,6 @@ const Messages = () => {
       </div>
     ))
   ) : null;
-};
 
   return (
     <>
