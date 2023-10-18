@@ -1,5 +1,5 @@
 import {
-  createContext, useState, useMemo, useEffect,
+  createContext, useState, useMemo, useCallback,
 } from 'react';
 
 const AuthContext = createContext({});
@@ -7,15 +7,15 @@ const AuthContext = createContext({});
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(() => localStorage.getItem('user'));
 
-  const logIn = (resData) => {
+  const logIn = useCallback((resData) => {
     localStorage.setItem('user', resData);
     setUser(resData);
-  };
+  }, []);
 
-  const logOut = () => {
+  const logOut = useCallback(() => {
     localStorage.removeItem('user');
     setUser(null);
-  };
+  }, []);
 
   const getAuthHeader = () => {
     if (user && user.token) {
