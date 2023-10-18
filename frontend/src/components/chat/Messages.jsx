@@ -28,15 +28,15 @@ const Messages = () => {
     if (messages.length > 0) {
       return (
         <>
-          {messages.map(({ body, channelId, username }) =>
+          {messages.map(({ body, id, currentUser }) => (
             <div key={id} className="text-break mb-2">
               <b>
-                {username}
+                {currentUser}
                 :
               </b>
               {body}
             </div>
-          )}
+          ))}
           <div ref={messagesEnd} />
         </>
       );
