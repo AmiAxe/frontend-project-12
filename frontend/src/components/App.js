@@ -1,5 +1,11 @@
 /* eslint-disable react/jsx-no-constructed-context-values */
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  Outlet,
+  Navigate,
+} from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import RegistrationForm from './forms/RegistrationForm';
@@ -10,6 +16,12 @@ import Navigation from './Navigation';
 import Page404 from './Page404';
 import { AuthProvider } from '../contexts/authContext';
 import routes from '../routes';
+import useAuth from '../hooks/useAuth';
+
+const initOutlet = () => {
+  const auth = useAuth();
+  return auth.user ? <Outlet /> : <Navigate to="/login" />;
+};
 
 const App = () => (
   <AuthProvider>
@@ -17,6 +29,9 @@ const App = () => (
       <div className="d-flex flex-column h-100">
         <Navigation />
         <Routes>
+          <Route path="/" element={<initOutlet />}>
+            <Route path="" element={<Chat />} />
+          </Route>
           <Route
             path={routes.mainPage()}
             element={(
