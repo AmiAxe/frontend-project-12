@@ -11,7 +11,10 @@ const Messages = () => {
     .map(({
       body, id, channelId, username
     }) => ({
-      body, id, channelId, username,
+      body,
+      id,
+      channelId,
+      username,
     }));
   const channels = useSelector(channelsSelector.selectAll);
   const { t } = useTranslation();
