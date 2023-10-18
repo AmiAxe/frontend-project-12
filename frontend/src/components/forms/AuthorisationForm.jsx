@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Button,
   Form,
@@ -34,6 +34,7 @@ const AuthorisationForm = () => {
       try {
         const res = await axios.post(routes.loginPath(), values);
         auth.logIn(res.data);
+        localStorage.setItem('isAuthenticated', true);
         navigate('/');
       } catch (err) {
         rollbar.error(t('registationError'));
@@ -47,6 +48,13 @@ const AuthorisationForm = () => {
       }
     },
   });
+
+  useEffect(() => {
+    const isAuthenticated = localStorage.getItem('isAuthenticated');
+    if (isAuthenticated) {
+      auth.logIn();
+    }
+  }, [auth])
 
   return (
     <Container className="container-fluid h-100">
