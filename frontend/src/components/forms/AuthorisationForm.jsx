@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import {
   Button,
   Form,
@@ -22,6 +22,7 @@ const AuthorisationForm = () => {
   const [authFailed, setAuthFailed] = useState(false);
   const auth = useAuth();
   const navigate = useNavigate();
+
   const { t } = useTranslation();
 
   const formik = useFormik({
@@ -33,29 +34,19 @@ const AuthorisationForm = () => {
       try {
         const res = await axios.post(routes.loginPath(), values);
         auth.logIn(res.data);
-        localStorage.setItem('isAuthenticated', true); // сохраняем информацию об авторизации в localStorage
         navigate('/');
       } catch (err) {
         rollbar.error(t('registationError'));
         if (!err.isAxiosError) {
           toast.error(t('errors.unknownError'));
           return;
-        }
-        if (err.response && err.response.status === 401) {
+        } if (err.response && err.response.status === 401) {
           setAuthFailed(true);
           return;
-        }
-        toast.error(t('errors.connectionError'));
+        } toast.error(t('errors.connectionError'));
       }
     },
   });
-
-  useEffect(() => {
-    const isAuthenticated = localStorage.getItem('isAuthenticated');
-    if (isAuthenticated) {
-      auth.logIn();
-    }
-  }, [auth]);
 
   return (
     <Container className="container-fluid h-100">
@@ -64,12 +55,25 @@ const AuthorisationForm = () => {
           <Card className="shadow-sm">
             <Card.Body className="row p-5">
               <Container className="col-12 col-md-6 d-flex align-items-center justify-content-center">
-                <Image src={`${process.env.PUBLIC_URL}/avatarreg.jpg`} className="rounded-circle" alt={t('Регистрация')} />
+                <Image
+                  src={`${process.env.PUBLIC_URL}/avatarreg.jpg`}
+                  className="rounded-circle"
+                  alt={t('Регистрация')}
+                />
               </Container>
-              <Form onSubmit={formik.handleSubmit} className="col-12 col-md-6 mt-3 mt-mb-0">
-                <h1 className="text-center mb-4">{t('authForm.headline')}</h1>
+              <Form
+                onSubmit={formik.handleSubmit}
+                className="col-12 col-md-6 mt-3 mt-mb-0"
+              >
+                <h1 className="text-center mb-4">
+                  {t('authForm.headline')}
+                </h1>
                 <Form.Group className="form-floating mb-3">
-                  <FloatingLabel label={t('authForm.nickname')} controlId="username" className="mb-3">
+                  <FloatingLabel
+                    label={t('authForm.nickname')}
+                    controlId="username"
+                    className="mb-3"
+                  >
                     <Form.Control
                       name="username"
                       type="text"
@@ -83,7 +87,11 @@ const AuthorisationForm = () => {
                   <Form.Text className="text-muted" />
                 </Form.Group>
                 <Form.Group className="form-floating mb-4">
-                  <FloatingLabel label={t('authForm.password')} controlId="password" className="mb-3">
+                  <FloatingLabel
+                    label={t('authForm.password')}
+                    controlId="password"
+                    className="mb-3"
+                  >
                     <Form.Control
                       name="password"
                       type="password"
@@ -93,12 +101,21 @@ const AuthorisationForm = () => {
                       onChange={formik.handleChange}
                       value={formik.values.password}
                     />
-                    <Form.Control.Feedback placement="right" type="invalid" tooltip>
+                    <Form.Control.Feedback
+                      placement="right"
+                      type="invalid"
+                      tooltip
+                    >
                       {t('errors.incorrectNameOrPass')}
                     </Form.Control.Feedback>
                   </FloatingLabel>
                 </Form.Group>
-                <Button className="w-100" variant="outline-primary" type="submit" disabled={formik.isSubmitting}>
+                <Button
+                  className="w-100"
+                  variant="outline-primary"
+                  type="submit"
+                  disabled={formik.isSubmitting}
+                >
                   {t('authForm.logInButton')}
                 </Button>
               </Form>
