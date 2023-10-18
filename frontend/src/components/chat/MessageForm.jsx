@@ -15,8 +15,8 @@ const MessageForm = () => {
   const currentId = useSelector((state) => state.channelsReducer.currentChannelId);
   const api = useApi();
   const { currentUser } = useContext(AuthContext);
-
   const { t } = useTranslation();
+  const inputEl = useRef(null);
 
   const formik = useFormik({
     initialValues: {
@@ -43,7 +43,6 @@ const MessageForm = () => {
     },
   });
 
-  const inputEl = useRef(null);
   useEffect(() => {
     inputEl.current.focus();
   }, [formik]);
