@@ -1,5 +1,5 @@
 import {
-  createContext, useState, useMemo, useCallback,
+  createContext, useState, useMemo,
 } from 'react';
 
 const AuthContext = createContext({});
@@ -7,29 +7,20 @@ const AuthContext = createContext({});
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(() => localStorage.getItem('user'));
 
-  const logIn = useCallback((resData) => {
+  const logIn = (resData) => {
     localStorage.setItem('user', resData);
     setUser(resData);
-  }, []);
-
-  const logOut = useCallback(() => {
-    localStorage.removeItem('user');
-    setUser(null);
-  }, []);
-
-  const getAuthHeader = () => {
-    if (user && user.token) {
-      return { Authorization: `Bearer ${user.token}` };
-    }
-    return {};
   };
 
-  useEffect(() => {
-    const storedUser = localStorage.getItem('user');
-    if (storedUser) {
-      setUser(storedUser);
-    }
-  }, []);
+  const logOut = () => {
+    localStorage.removeItem('user');
+    setUser(null);
+  };
+
+  const getAuthHeader = () => {
+    const userData = localStorage.getItem('user');
+    return userData?.token ? { Authorization: `Bearer ${userData.token}` } : {};
+  };
 
   const memoValue = useMemo(
     () => ({
