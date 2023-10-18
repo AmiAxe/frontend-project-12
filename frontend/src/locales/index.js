@@ -71,7 +71,7 @@ const resources = {
           headline: 'Удалить канал',
           subText: 'Уверены?',
           cancelButton: 'Отменить',
-          submitButton: 'Отправить',
+          submitButton: 'Удалить',
           toastText: 'Канал удалён',
           confirmation: 'Уверены?',
         },
