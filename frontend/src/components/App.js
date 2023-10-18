@@ -11,17 +11,11 @@ import 'react-toastify/dist/ReactToastify.css';
 import RegistrationForm from './forms/RegistrationForm';
 import AuthorisationForm from './forms/AuthorisationForm';
 import Chat from './chat/Chat';
-import PrivateRoute from './PrivateRoute';
+import initOutlet from './PrivateRoute';
 import Navigation from './Navigation';
 import Page404 from './Page404';
 import { AuthProvider } from '../contexts/authContext';
 import routes from '../routes';
-import useAuth from '../hooks/useAuth';
-
-const initOutlet = () => {
-  const auth = useAuth();
-  return auth.user ? <Outlet /> : <Navigate to={routes.loginPage()} />;
-};
 
 const App = () => (
   <AuthProvider>
@@ -29,14 +23,6 @@ const App = () => (
       <div className="d-flex flex-column h-100">
         <Navigation />
         <Routes>
-          <Route
-            path={routes.mainPage()}
-            element={(
-              <PrivateRoute>
-                <Chat />
-              </PrivateRoute>
-            )}
-          />
           <Route path={routes.signupPage()} element={<RegistrationForm />} />
           <Route path={routes.loginPage()} element={<AuthorisationForm />} />
           <Route path={routes.mainPage()} element={<initOutlet />}>
