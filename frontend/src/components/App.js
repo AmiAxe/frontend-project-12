@@ -20,7 +20,7 @@ import useAuth from '../hooks/useAuth';
 
 const initOutlet = () => {
   const auth = useAuth();
-  return auth.user ? <Outlet /> : <Navigate to="/login" />;
+  return auth.user ? <Outlet /> : <Navigate to={routes.loginPage()} />;
 };
 
 const App = () => (
@@ -29,9 +29,6 @@ const App = () => (
       <div className="d-flex flex-column h-100">
         <Navigation />
         <Routes>
-          <Route path="/" element={<initOutlet />}>
-            <Route path="" element={<Chat />} />
-          </Route>
           <Route
             path={routes.mainPage()}
             element={(
@@ -42,6 +39,9 @@ const App = () => (
           />
           <Route path={routes.signupPage()} element={<RegistrationForm />} />
           <Route path={routes.loginPage()} element={<AuthorisationForm />} />
+          <Route path={routes.mainPage()} element={<initOutlet />}>
+            <Route path="" element={<Chat />} />
+          </Route>
           <Route path="*" element={<Page404 />} />
         </Routes>
       </div>
