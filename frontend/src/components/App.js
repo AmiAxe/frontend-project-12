@@ -22,18 +22,21 @@ const App = () => (
     <BrowserRouter>
       <div className="d-flex flex-column h-100">
         <Navigation />
-        <Route
-          path={routes.mainPage()}
-          element={<PrivateRoute>
-            <Route path="" element={<Chat />} />
-          </PrivateRoute>}
-        />
-        <Route path={routes.signupPage()} element={<RegistrationForm />} />
-        <Route path={routes.loginPage()} element={<AuthorisationForm />} />
+        <Routes>
+          <Route
+            path={routes.mainPage()}
+            element={
+              <PrivateRoute>
+                <Route path="" element={<Chat />} />
+              </PrivateRoute>
+            }
+          />
+          <Route path={routes.signupPage()} element={<RegistrationForm />} />
+          <Route path={routes.loginPage()} element={<AuthorisationForm />} />
           <Route path="*" element={<Page404 />} />
         </Routes>
+        <ToastContainer />
       </div>
-      <ToastContainer />
     </BrowserRouter>
   </AuthProvider>
 );
