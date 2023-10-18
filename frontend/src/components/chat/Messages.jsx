@@ -35,9 +35,7 @@ const Messages = () => {
           {body}
         </div>
       ));
-    } else {
-      return null;
-    }
+    } return null;
   };
 
   return (
