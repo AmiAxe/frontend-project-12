@@ -1,9 +1,13 @@
-import { Navigate, Outlet } from 'react-router-dom';
+import { Navigate, useLocation } from 'react-router-dom';
 import useAuth from '../hooks/useAuth';
 
-const InitOutlet = () => {
+const AuthRoute = ({ children }) => {
   const auth = useAuth();
-  return auth.user ? <Outlet /> : <Navigate to={routes.loginPage()} />;
+  const location = useLocation();
+
+  return (
+    auth.user ? children : <Navigate to={routes.loginPage()} state={{ from: location }} />
+  );
 };
 
-export default InitOutlet;
+export default AuthRoute;
