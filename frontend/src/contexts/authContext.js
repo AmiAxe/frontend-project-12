@@ -18,8 +18,10 @@ const AuthProvider = ({ children }) => {
   };
 
   const getAuthHeader = () => {
-    const userData = localStorage.getItem('user');
-    return userData?.token ? { Authorization: `Bearer ${userData.token}` } : {};
+    if (user && user.token) {
+      return { Authorization: `Bearer ${user.token}` };
+    }
+    return {};
   };
 
   const memoValue = useMemo(
