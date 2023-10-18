@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { messagesSelector } from '../../slices/messagesSlice';
@@ -10,6 +10,7 @@ const Messages = () => {
     .filter(({ channelId }) => channelId === currentId);
   const channels = useSelector(channelsSelector.selectAll);
   const { t } = useTranslation();
+  const messagesEnd = useRef(null);
 
   const getCurrentChannel = () => {
     const currentChannel = channels.find(({ id }) => id === currentId);
@@ -19,10 +20,13 @@ const Messages = () => {
     return t('defaultChannel');
   };
 
+  useEffect(() => {
+    messagesEnd.current?.scrollIntoView();
+  }, [messages]);
+
   const renderMessages = () => {
-    if (!currentId) {
-      return null;
-    } return messages.map(({ body, id, currentUser }) => (
+  return (messages.length > 0) ? (
+    messages.map(({ body, id, currentUser }) => (
       <div key={id} className="text-break mb-2">
         <b>
           {currentUser}
@@ -30,8 +34,9 @@ const Messages = () => {
         </b>
         {body}
       </div>
-    ));
-  };
+    ))
+  ) : null;
+};
 
   return (
     <>
