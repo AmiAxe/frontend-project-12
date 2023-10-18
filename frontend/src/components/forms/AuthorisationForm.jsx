@@ -54,7 +54,7 @@ const AuthorisationForm = () => {
     if (isAuthenticated) {
       auth.logIn();
     }
-  }, [auth])
+  }, [auth]);
 
   return (
     <Container className="container-fluid h-100">
