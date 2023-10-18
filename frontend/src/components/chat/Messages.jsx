@@ -24,17 +24,21 @@ const Messages = () => {
     messagesEnd.current?.scrollIntoView();
   }, [messages]);
 
-  const renderMessages = () => (messages.length > 0) ? (
-    messages.map(({ body, id, currentUser }) => (
-      <div key={id} className="text-break mb-2">
-        <b>
-          {currentUser}
-          :
-        </b>
-        {body}
-      </div>
-    ))
-  ) : null;
+  const renderMessages = () => {
+    if (messages.length > 0) {
+      return messages.map(({ body, id, currentUser }) => (
+        <div key={id} className="text-break mb-2">
+          <b>
+            {currentUser}
+            :
+          </b>
+          {body}
+        </div>
+      ));
+    } else {
+      return null;
+    }
+  };
 
   return (
     <>
