@@ -1,15 +1,10 @@
-import { Navigate, useLocation } from 'react-router-dom';
+import { Navigate, Outlet } from 'react-router-dom';
 import useAuth from '../hooks/useAuth';
 
-const AuthRoute = ({ children }) => {
-  const { user } = useAuth();
-
-  const location = useLocation();
-  if (user && user.token) {
-    return children;
-  }
-
-  return <Navigate to="/login" state={{ from: location }} />;
+const initOutlet = () => {
+  const auth = useAuth();
+  return auth.user ? <Outlet /> : <Navigate to="/login" />;
+  return auth.user ? <Outlet /> : <Navigate to={routes.loginPage()} />;
 };
 
-export default AuthRoute;
+export default initOutlet;
