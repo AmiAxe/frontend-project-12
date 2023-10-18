@@ -7,14 +7,7 @@ import { channelsSelector } from '../../slices/channelsSlice';
 const Messages = () => {
   const currentId = useSelector((state) => state.channelsReducer.currentChannelId);
   const messages = useSelector(messagesSelector.selectAll)
-    .filter(({ channelId }) => channelId === currentId)
-    .map(({
-      body, channelId, username,
-    }) => ({
-      body,
-      channelId,
-      username,
-    }));
+
   const channels = useSelector(channelsSelector.selectAll);
   const { t } = useTranslation();
   const messagesEnd = useRef(null);
@@ -35,7 +28,7 @@ const Messages = () => {
     if (messages.length > 0) {
       return (
         <>
-          {messages.map(({ body, channelId, username }) => (
+          {messages.map(({ id, body, channelId, username }) => (
             <div key={id} className="text-break mb-2">
               <b>
                 {username}
