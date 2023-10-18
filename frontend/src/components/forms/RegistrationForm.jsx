@@ -76,7 +76,7 @@ const RegistrationForm = () => {
                 <Image
                   src={`${process.env.PUBLIC_URL}/avatarreg.jpg`}
                   className="rounded-circle"
-                  alt={t('Регистрация')}
+                  alt={t('signUpForm.headline')}
                 />
               </Container>
               <Form
