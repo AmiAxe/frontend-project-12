@@ -5,7 +5,6 @@ import {
   Image,
 } from 'react-bootstrap';
 import React from 'react';
-// import { animateScroll } from 'react-scroll';
 import { useSelector, useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { channelsSelector } from '../../slices/channelsSlice';
