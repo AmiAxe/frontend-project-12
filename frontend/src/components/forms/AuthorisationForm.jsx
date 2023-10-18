@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { 
+import {
   Button,
   Form,
   Card,
@@ -104,7 +104,8 @@ const AuthorisationForm = () => {
               </Form>
             </Card.Body>
             <Card.Footer className="text-center p-4">
-              <span>{t('authForm.footerText')}</span> {' '}
+              <span>{t('authForm.footerText')}</span> 
+              {' '}
               <Link to={routes.signupPage()}>{t('authForm.footerButton')}</Link>
             </Card.Footer>
           </Card>
