@@ -48,14 +48,14 @@ const Chat = () => {
         if (!err.isAxiosError) {
           toast.error('errors.unknownError');
           return;
-        } if (err.response.status === 401) {
+        } if (err.response && err.response.status === 401) {
           logOut();
           return;
         } toast.error(t('errors.connectionError'));
       }
     };
     fetchContent();
-  }, []);
+  }, [dispatch, rollbar, t]);
 
   return (
     <Container className="h-100 my-4 overflow-hidden rounded shadow">
