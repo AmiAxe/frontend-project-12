@@ -46,9 +46,9 @@ const Chat = () => {
       } catch (err) {
         rollbar.error('fetchDataError');
         if (!err.isAxiosError) {
-          toast.error(t('errors.unknownError'));
+          toast.error('errors.unknownError');
           return;
-        } if (err.response && err.response.status === 401) {
+        } if (err.response.status === 401) {
           logOut();
           return;
         } toast.error(t('errors.connectionError'));
