@@ -16,6 +16,10 @@ const Channels = () => {
   const channels = useSelector(channelsSelector.selectAll);
   const { t } = useTranslation();
 
+  const handleAddChannel = () => {
+    dispatch(showModal({ type: 'adding' }));
+  };
+
   if (channels.length === 0) {
     return null;
   }
@@ -24,10 +28,10 @@ const Channels = () => {
       <div className="d-flex mt-1 justify-content-between mb-2 ps-4 pe-2 p-4">
         <b>{t('chat.headline')}</b>
         <Button
-          onClick={() => dispatch(showModal({ type: 'adding' }))}
           type="button"
           variant="light"
           className="p-0 text-primary btn btn-group-vertical"
+          onClick={handleAddChannel}
         >
           <Image src={`${process.env.PUBLIC_URL}/plus.svg`} />
           <span className="visually-hidden">+</span>
