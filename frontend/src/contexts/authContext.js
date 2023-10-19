@@ -17,7 +17,12 @@ const AuthProvider = ({ children }) => {
     setUser(null);
   };
 
-  const getAuthHeader = () => user?.token ? { Authorization: `Bearer ${user.token}` } : {};
+  const getAuthHeader = () => {
+    if (user?.token) {
+      return { Authorization: `Bearer ${user.token}` };
+    }
+    return {};
+  };
 
   const memoValue = useMemo(
     () => ({
