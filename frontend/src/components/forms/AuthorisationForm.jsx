@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import {
   Button,
   Form,
@@ -23,11 +23,6 @@ const AuthorisationForm = () => {
   const auth = useAuth();
   const navigate = useNavigate();
   const { t } = useTranslation();
-  const inputRef = useRef();
-
-  useEffect(() => {
-    inputRef.current.focus();
-  }, []);
 
   const formik = useFormik({
     initialValues: {
