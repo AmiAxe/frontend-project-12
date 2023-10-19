@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useRef } from 'react';
 import {
   Button,
   Form,
@@ -10,7 +10,7 @@ import {
 } from 'react-bootstrap';
 import { toast } from 'react-toastify';
 import { useRollbar } from '@rollbar/react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useFormik } from 'formik';
 import axios from 'axios';
@@ -22,8 +22,12 @@ const AuthorisationForm = () => {
   const [authFailed, setAuthFailed] = useState(false);
   const auth = useAuth();
   const navigate = useNavigate();
-
+  const location = useLocation();
   const { t } = useTranslation();
+
+  useEffect(() => {
+    inputRef.current.focus();
+  }, []);
 
   const formik = useFormik({
     initialValues: {
@@ -34,8 +38,8 @@ const AuthorisationForm = () => {
       try {
         const res = await axios.post(routes.loginPath(), values);
         auth.logIn(res.data);
-        localStorage.setItem('authToken', res.data.token);
-        navigate('/');
+        const { from } = location.state || { from: { pathname: routes.mainPage() } };
+        navigate(from);
       } catch (err) {
         rollbar.error(t('registationError'));
         if (!err.isAxiosError) {
@@ -49,14 +53,6 @@ const AuthorisationForm = () => {
     },
   });
 
-  useEffect(() => {
-    const authToken = localStorage.getItem('authToken');
-    if (authToken) {
-      auth.logIn({ token: authToken });
-      navigate('/');
-    }
-  }, [auth, navigate]);
-  
   return (
     <Container className="container-fluid h-100">
       <Row className="justify-content-center align-content-center h-100">
