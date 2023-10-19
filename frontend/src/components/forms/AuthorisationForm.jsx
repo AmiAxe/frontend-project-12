@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Button,
   Form,
@@ -34,6 +34,7 @@ const AuthorisationForm = () => {
       try {
         const res = await axios.post(routes.loginPath(), values);
         auth.logIn(res.data);
+        localStorage.setItem('authToken', res.data.token);
         navigate('/');
       } catch (err) {
         rollbar.error(t('registationError'));
@@ -48,6 +49,14 @@ const AuthorisationForm = () => {
     },
   });
 
+  useEffect(() => {
+    const authToken = localStorage.getItem('authToken');
+    if (authToken) {
+      auth.logIn({ token: authToken });
+      navigate('/');
+    }
+  }, [auth, navigate]);
+  
   return (
     <Container className="container-fluid h-100">
       <Row className="justify-content-center align-content-center h-100">
