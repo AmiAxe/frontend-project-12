@@ -55,7 +55,7 @@ const Chat = () => {
       }
     };
     fetchContent();
-  }, [dispatch, rollbar, t]);
+  }, []);
 
   return (
     <Container className="h-100 my-4 overflow-hidden rounded shadow">
