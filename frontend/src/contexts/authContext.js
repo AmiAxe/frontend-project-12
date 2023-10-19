@@ -18,7 +18,7 @@ const AuthProvider = ({ children }) => {
   };
 
   const getAuthHeader = () => {
-    if (user?.token) {
+    if (user && user.token) {
       return { Authorization: `Bearer ${user.token}` };
     }
     return {};
