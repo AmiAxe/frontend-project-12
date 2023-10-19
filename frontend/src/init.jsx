@@ -18,24 +18,11 @@ const init = async () => {
     environment: 'production',
   };
 
-  const storedActiveChannelId = localStorage.getItem('activeChannelId');
-
-  const activeChannelId = storedActiveChannelId
-    ? Number(storedActiveChannelId)
-    : null;
-
-  if (activeChannelId !== null) {
-    store.dispatch(setCurrentChannelId(activeChannelId));
-  }
-
   socket.on('newMessage', (payload) => store.dispatch(addMessage(payload)));
   socket.on('newChannel', (payload) => {
     store.dispatch(addChannel(payload));
-    // store.dispatch(setCurrentChannelId(payload.id));
-    if (activeChannelId === null) {
-      store.dispatch(setCurrentChannelId(payload.id));
-      localStorage.setItem('activeChannelId', payload.id);
-    }
+    const storedActiveChannelId = localStorage.getItem('activeChannelId');
+    store.dispatch(setCurrentChannelId(storedActiveChannelId));
   });
   socket.on('renameChannel', (payload) => {
     store.dispatch(updateChannel({ id: payload.id, changes: payload }));
