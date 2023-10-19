@@ -10,7 +10,7 @@ import {
 } from 'react-bootstrap';
 import { toast } from 'react-toastify';
 import { useRollbar } from '@rollbar/react';
-import { Link, useNavigate, useLocation } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useFormik } from 'formik';
 import axios from 'axios';
@@ -22,8 +22,8 @@ const AuthorisationForm = () => {
   const [authFailed, setAuthFailed] = useState(false);
   const auth = useAuth();
   const navigate = useNavigate();
-  const location = useLocation();
   const { t } = useTranslation();
+  const inputRef = useRef();
 
   useEffect(() => {
     inputRef.current.focus();
@@ -38,8 +38,7 @@ const AuthorisationForm = () => {
       try {
         const res = await axios.post(routes.loginPath(), values);
         auth.logIn(res.data);
-        const { from } = location.state || { from: { pathname: routes.mainPage() } };
-        navigate(from);
+        navigate('/');
       } catch (err) {
         rollbar.error(t('registationError'));
         if (!err.isAxiosError) {
