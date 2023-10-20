@@ -9,7 +9,7 @@ import store from './slices/index';
 import resources from './locales/index';
 import { addMessage } from './slices/messagesSlice';
 import {
-  addChannel, updateChannel, removeChannel, setCurrentChannelId,
+  addChannel, updateChannel, removeChannel,
 } from './slices/channelsSlice';
 
 const init = async () => {
