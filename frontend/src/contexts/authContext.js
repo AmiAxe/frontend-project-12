@@ -10,7 +10,7 @@ const AuthProvider = ({ children }) => {
       try {
         return JSON.parse(localStorage.getItem('user'));
       } catch (error) {
-        console.error('Error parsing user data from localStorage:', error);
+        // console.error('Error parsing user data from localStorage:', error);
         return null;
       }
     })();
