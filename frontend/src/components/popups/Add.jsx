@@ -49,7 +49,7 @@ const Add = () => {
         };
         try {
           await api.newChannel(newChannel);
-          store.dispatch(setCurrentChannelId(newChannel.id));
+          store.dispatch(setCurrentChannelId(newChannel));
           dispatch(hideModal());
           toast.success(t('modals.add.toastText'));
           inputEl.current.focus();
