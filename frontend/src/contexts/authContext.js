@@ -16,7 +16,6 @@ const AuthProvider = ({ children }) => {
   return initialUser;
 });
 
-  
   const logIn = (resData) => {
     localStorage.setItem('user', JSON.stringify(resData));
     setUser(resData);
