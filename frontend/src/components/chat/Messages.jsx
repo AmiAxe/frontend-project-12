@@ -31,10 +31,8 @@ const Messages = () => {
         <>
           {messages.map(({ body, id, username }) => (
             <div key={id} className="text-break mb-2">
-              <b>
-                {username}
-                :
-              </b>
+              <b>{username}</b>
+              {': '}
               {body}
             </div>
           ))}
