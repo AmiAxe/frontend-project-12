@@ -48,9 +48,9 @@ const Add = () => {
           removable: true,
         };
         try {
-          await api.newChannel(newChannel);
+          const newData = await api.newChannel(newChannel);
           dispatch(hideModal());
-          dispatch(setCurrentChannelId(newChannel.id));
+          dispatch(setCurrentChannelId(newData.data.id));
           toast.success(t('modals.add.toastText'));
         } catch (err) {
           rollbar.error('addChannelError');
