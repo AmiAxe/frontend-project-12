@@ -8,7 +8,7 @@ import { useRollbar } from '@rollbar/react';
 import { useTranslation } from 'react-i18next';
 import * as Yup from 'yup';
 import { useDispatch, useSelector } from 'react-redux';
-import { channelsSelector } from '../../slices/channelsSlice';
+import { channelsSelector, setCurrentChannelId } from '../../slices/channelsSlice';
 import { hideModal } from '../../slices/modalsSlice';
 import useApi from '../../hooks/useApi';
 
@@ -51,6 +51,7 @@ const Add = () => {
           dispatch(hideModal());
           toast.success(t('modals.add.toastText'));
           inputEl.current.focus();
+          dispatch(setCurrentChannelId(newChannel.id));
         } catch (err) {
           rollbar.error('addChannelError');
           if (!err.isAxiosError) {
