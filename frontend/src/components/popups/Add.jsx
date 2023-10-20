@@ -11,7 +11,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { channelsSelector, setCurrentChannelId } from '../../slices/channelsSlice';
 import { hideModal } from '../../slices/modalsSlice';
 import useApi from '../../hooks/useApi';
-// import store from '../../slices/index';
+import store from '../../slices/index';
 
 const Add = () => {
   const rollbar = useRollbar();
@@ -51,7 +51,7 @@ const Add = () => {
           await api.newChannel(newChannel);
           dispatch(hideModal());
           toast.success(t('modals.add.toastText'));
-          dispatch(setCurrentChannelId(newChannel));
+          store.dispatch(setCurrentChannelId(payload.id));
           inputEl.current.focus();
         } catch (err) {
           rollbar.error('addChannelError');
