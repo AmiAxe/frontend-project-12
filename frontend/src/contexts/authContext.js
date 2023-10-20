@@ -6,7 +6,7 @@ const AuthContext = createContext({});
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(() => {
-    const initialUser;
+    let initialUser;
     try {
       initialUser = JSON.parse(localStorage.getItem('user'));
     } catch (error) {
