@@ -50,8 +50,8 @@ const Add = () => {
         try {
           await api.newChannel(newChannel);
           dispatch(hideModal());
-          toast.success(t('modals.add.toastText'));
           dispatch(setCurrentChannelId(newChannel.id));
+          toast.success(t('modals.add.toastText'));
           inputEl.current.focus();
         } catch (err) {
           rollbar.error('addChannelError');
