@@ -24,7 +24,6 @@ const init = async () => {
   });
   socket.on('renameChannel', (payload) => {
     store.dispatch(updateChannel({ id: payload.id, changes: payload }));
-    store.dispatch(setCurrentChannelId(payload.id));
   });
   socket.on('removeChannel', (payload) => {
     store.dispatch(removeChannel(payload.id));
