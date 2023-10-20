@@ -49,10 +49,10 @@ const Add = () => {
         };
         try {
           await api.newChannel(newChannel);
+          store.dispatch(setCurrentChannelId(newChannel.id));
           dispatch(hideModal());
           toast.success(t('modals.add.toastText'));
           inputEl.current.focus();
-          store.dispatch(setCurrentChannelId(newChannel.id));
         } catch (err) {
           rollbar.error('addChannelError');
           if (!err.isAxiosError) {
