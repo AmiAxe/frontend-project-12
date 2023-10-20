@@ -63,6 +63,7 @@ const MessageForm = () => {
           className="border-0 p-0 ps-2 form-control"
           value={formik.values.text}
           onChange={formik.handleChange}
+          disabled={values.message === ''}
         />
         <Button
           type="submit"
