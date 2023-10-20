@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import 'react-toastify/dist/ReactToastify.css';
 import _ from 'lodash';
 import { useFormik } from 'formik';
@@ -19,6 +19,11 @@ const Add = () => {
   const channelsNames = channels.map(({ name }) => name);
   const dispatch = useDispatch();
   const api = useApi();
+  const inputEl = useRef(null);
+
+  useEffect(() => {
+    inputEl.current.focus();
+  }, []);
 
   const { t } = useTranslation();
 
@@ -71,6 +76,7 @@ const Add = () => {
             </Form.Label>
             <Form.Control
               id="name"
+              ref={inputEl}
               data-testid="input-body"
               name="channelName"
               required=""
