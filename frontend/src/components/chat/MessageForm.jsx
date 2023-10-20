@@ -63,12 +63,12 @@ const MessageForm = () => {
           className="border-0 p-0 ps-2 form-control"
           value={formik.values.text}
           onChange={formik.handleChange}
-          disabled={formik.values.text === ''}
         />
         <Button
           type="submit"
           variant="light"
           className="btn btn-group-vertical"
+          disabled={formik.values.text === ''}
         >
           <Image src={`${process.env.PUBLIC_URL}/send.svg`} />
           <span className="visually-hidden">{t('chat.submitButton')}</span>
