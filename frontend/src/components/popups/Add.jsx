@@ -52,7 +52,6 @@ const Add = () => {
           dispatch(hideModal());
           dispatch(setCurrentChannelId(newChannel.id));
           toast.success(t('modals.add.toastText'));
-          inputEl.current.focus();
         } catch (err) {
           rollbar.error('addChannelError');
           if (!err.isAxiosError) {
