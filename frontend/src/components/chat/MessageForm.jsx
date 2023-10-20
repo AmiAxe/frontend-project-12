@@ -14,7 +14,7 @@ const MessageForm = () => {
   const rollbar = useRollbar();
   const currentId = useSelector((state) => state.channelsReducer.currentChannelId);
   const api = useApi();
-  const { currentUser } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
   const { t } = useTranslation();
   const inputEl = useRef(null);
 
@@ -26,7 +26,7 @@ const MessageForm = () => {
       const newMessage = {
         body: filter.clean(formik.values.text),
         channelId: currentId,
-        username: currentUser,
+        username: user.username,
       };
       try {
         await api.newMessage(newMessage);
